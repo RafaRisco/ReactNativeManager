@@ -24,7 +24,7 @@ export const employeeCreate = ({ name, phone, shift }) => {
     firebase.database().ref(`/users/${currentUser.uid}/employess`)
       .push({ name, phone, shift })
       .then(() => {
-        dispatch({ type: EMPLOYEE_CREATE })
+        dispatch({ type: EMPLOYEE_CREATE });
         Actions.pop()
       });
   };
@@ -38,7 +38,6 @@ export const employeesFetch = () => {
     firebase.database().ref(`/users/${currentUser.uid}/employess`)
       .on('value', snapshot => {
         dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
-        console.log('prueba');
       });
   };
 };
